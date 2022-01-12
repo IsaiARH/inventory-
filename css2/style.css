@@ -1,0 +1,218 @@
+body {
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+}
+.home {
+  width: 120px;
+  height: 100vh;
+  font-size: 50px;
+  background-color: #ccc;
+  color: #fff;
+  position: fixed;
+}
+
+header {
+  width: 100%;
+  margin-left: 120px;
+}
+
+header h1 {
+  color: #ccc;
+  margin-left: 5px;
+  font-family: "Bebas Neue", cursive;
+}
+
+header img {
+  height: 55px;
+  width: 55px;
+}
+
+header #search {
+  padding-left: 10px;
+  outline: none;
+  font-family: "Bebas Neue", cursive, FontAwesome;
+}
+
+header input::-webkit-input-placeholder {
+  text-align: right;
+  margin-right: 5px;
+}
+
+header button {
+  color: #ccc;
+  font-size: 17px;
+  background-color: #fff;
+  width: 170px;
+  border: 1px solid #ccc;
+}
+button:hover {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.sidebar {
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 120px;
+  top: 70px;
+}
+
+.sidebar i {
+  font-size: 50px;
+  color: #fff;
+}
+
+.sidebar .fa-hands-helping {
+  text-decoration: none;
+  font-size: 50px;
+  color: #fff;
+}
+
+.modal {
+  color: #ccc;
+}
+
+.modal .camera {
+  font-size: 60px;
+}
+
+.label_camera-active {
+  border: 1px solid red;
+}
+
+.labelActive {
+  color: red;
+}
+
+#cantidadDelProducto {
+  --size: 50px;
+  width: var(--size);
+  height: var(--size);
+}
+
+#cantidadDelProducto::-webkit-inner-spin-button,
+#cantidadDelProducto::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.modal button {
+  font-size: 17px;
+  border: 1px solid #ccc;
+}
+
+#cantidadDelProducto::-webkit-input-placeholder {
+  font-size: 20px;
+}
+
+.caracteres {
+  color: #ccc;
+}
+main img {
+  --size: 90px;
+  width: var(--size);
+  height: var(--size);
+}
+
+main {
+  margin-left: 120px;
+}
+main button {
+  color: #ccc;
+  font-size: 17px;
+  background-color: #fff;
+  width: 100px;
+  border: 1px solid #ccc;
+}
+
+.container-products {
+  overflow: auto;
+  height: 100vh;
+}
+
+.products {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  margin-right: 60px;
+}
+
+#info input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+}
+
+.modal-footer .QR {
+  width: 250px;
+}
+
+.select div h4:hover {
+  font-size: 20px;
+}
+
+.Actions input {
+  width: 260px;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown button {
+  background-color: #ccc;
+  color: #fff;
+  padding: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 2px;
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.elections i {
+  font-size: 70px;
+}
+/*------------------------------------------------------------------------------------------
+#MEDIA 
+-------------------------------------------------------------------------------------------*/
+@media screen and (max-width: 1230px) {
+  .home {
+    width: 100px;
+    font-size: 40px;
+  }
+  .sidebar {
+    width: 100px;
+    font-size: 40px;
+  }
+  header {
+    margin-left: 100px;
+  }
+  main {
+    margin-left: 100px;
+  }
+}

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--link de css bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!--link de css-->
+    <link rel="stylesheet" href="css2/style.css" />
+    <title>inventario</title>
+    <!--excel table-->
+    <script src="table2excel.js"></script>
+  </head>
+  <body class="row">
+    <!--head-->
+    <!--house icon-->
+    <div class="col-1 col-md-2 col-xxl-1 home text-center">
+      <i class="fas fa-house-user mx-auto"></i>
+    </div>
+    <!--title, search and other buttons-->
+    <header class="header col-11 col-xxl-11 mb-3">
+      <div class="mt-3 d-flex justify-content-between">
+        <h1 class="">Inventory control</h1>
+        <img src="imgs/img-game.jpg" class="me-3 rounded-circle" alt="" />
+      </div>
+      <hr />
+      <nav class="d-flex justify-content-between">
+        <div>
+          <input
+            type="text"
+            class="rounded-pill"
+            id="search"
+            placeholder="&#xF002;"
+          />
+          <button class="rounded p-2 show">
+            Mostrar producto <i class="fas fa-angle-double-up"></i>
+          </button>
+        </div>
+        <div class="others d-flex align-items-center d-none">
+          <button class="rounded me-1 delete-others">Delete</button>
+          <div>
+            <pre id="json" class="d-none"></pre>
+            <button class="rounded download-excel">Excel</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!--sidebard-->
+    <div class="sidebar mt-5">
+      <i
+        class="far fa-plus-square mt-5 mx-auto"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      ></i>
+      <i
+        class="fas fa-headset mt-5 mx-auto"
+        data-bs-toggle="modal"
+        data-bs-target="#info"
+      ></i>
+      <a class="fas fa-hands-helping mt-5 mx-auto" href="soporte.html"></a>
+      <i class="fas fa-cogs mt-5 mx-auto"></i>
+    </div>
+    <!--modal-->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Add products</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="" id="myForm">
+              <div class="form">
+                <input
+                  type="file"
+                  name=""
+                  id="camara"
+                  class="d-none"
+                  value="0"
+                />
+                <label
+                  for="camara"
+                  class="mx-auto camera d-flex justify-content-center border radius col-4 py-2"
+                  ><ion-icon name="camera-outline"></ion-icon
+                ></label>
+              </div>
+              <div class="form-floating mt-3">
+                <input
+                  type="text"
+                  class="form-control insertar"
+                  id="nombreDelProducto"
+                  placeholder="Nombre del producto"
+                  required
+                  name="nombre"
+                />
+                <label for="nombreDelProducto" class="labelName"
+                  >Nombre del producto</label
+                >
+              </div>
+              <div class="form-floating mt-3">
+                <input
+                  type="text"
+                  class="form-control insertar"
+                  id="precioDelProducto"
+                  placeholder="Nombre del producto"
+                  required
+                  name="nombre"
+                />
+                <label for="precioDelProducto" class="labelPrice">Precio</label>
+              </div>
+              <div class="form mt-3 d-flex justify-content-center">
+                <ion-icon name="add-outline" class="my-auto add"></ion-icon>
+                <input
+                  type="number"
+                  class="mx-1 number-input text-center border"
+                  id="cantidadDelProducto"
+                  value="0"
+                />
+                <ion-icon
+                  name="remove-outline"
+                  class="my-auto remove"
+                ></ion-icon>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary nou"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button "
+              class="btn btn-primary acept"
+              data-bs-dismiss="modal"
+            >
+              Acept
+            </button>
+            <input
+              type="submit"
+              class="btn btn-primary edit"
+              value="Edit"
+              data-bs-dismiss="modal"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--content-->
+    <main class="col-11 col-xxl-11">
+      <hr />
+      <!--caracteres-->
+      <div class="d-flex justify-content-between caracteres row">
+        <div class="d-flex col-2">
+          <div class="form-check me-5">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckDefault"
+            />
+          </div>
+          <h5>File</h5>
+        </div>
+        <h5 class="col-2">Name</h5>
+        <h5 class="col-2">Stock</h5>
+        <h5 class="col-2">Price</h5>
+        <h5 class="col-2">Actions</h5>
+      </div>
+      <hr />
+      <!--products-->
+      <div class="container-products"></div>
+    </main>
+    <div class="prueba"></div>
+    <!--modal info-->
+    <div
+      class="modal fade"
+      id="info"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title mx-auto" id="staticBackdropLabel">
+              Contactanos
+            </h5>
+          </div>
+          <div class="modal-body">
+            <form id="form">
+              <div class="row">
+                <label for="inputFrom" class="col-1 me-4">From:</label>
+                <input
+                  type="email"
+                  id="inputFrom"
+                  name="email"
+                  class="col-10"
+                />
+              </div>
+              <div class="row mt-4">
+                <label for="inputSubject" class="col-1 me-5">Subject:</label>
+                <input
+                  type="text"
+                  id="inputSubject"
+                  name="subject"
+                  class="col-9 ms-1"
+                />
+              </div>
+              <div class="form-floating mx-2 mb-1 mt-4">
+                <textarea
+                  class="form-control"
+                  placeholder="Leave a comment here"
+                  id="inputEmailBody"
+                  style="min-height: 100px; max-height: px"
+                  name="inputEmailBody"
+                ></textarea>
+                <label for="inputEmailBody">Compose email</label>
+              </div>
+            </form>
+            <script
+              type="text/javascript"
+              src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+            ></script>
+            <script type="text/javascript">
+              (function () {
+                emailjs.init("user_RZSH8ikIIeljDJO1r6myG");
+              })();
+
+              const sendEmail = () => {
+                let inputFrom = document.getElementById("inputFrom");
+                let inputSubject = document.getElementById("inputSubject");
+                let inputBodyEmail = document.getElementById("inputEmailBody");
+
+                var contactParam = {
+                  from: inputFrom,
+                  subject: inputSubject,
+                  emailBody: inputBodyEmail,
+                };
+
+                emailjs
+                  .send("service_r143l5m", "template_cojiq0m", contactParam)
+                  .then((res) => {});
+              };
+            </script>
+          </div>
+          <div class="modal-footer d-flex flex-column">
+            <div class="buttons">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary sendEmail"
+                form="form"
+              >
+                Send
+              </button>
+            </div>
+
+            <div class="QR">
+              <img
+                src="imgs/shareby.cam-whatsapp-message-256px.png"
+                class=""
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--font awesome-->
+    <script
+      src="https://kit.fontawesome.com/5c5091c255.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--ion-icons-->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <!--javascrip de bootstrap-->
+    <script src="js/bootstrap.min.js"></script>
+    <!--axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!--javascrip local-->
+    <script src="javascript/codigo.js"></script>
+    <!--event table-->
+    <script>
+      document
+        .querySelector(".download-excel")
+        .addEventListener("click", () => {
+          var table2excel = new Table2Excel();
+          table2excel.export(document.querySelector(".tableInventory"));
+        });
+    </script>
+  </body>
+</html>
